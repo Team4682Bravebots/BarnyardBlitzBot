@@ -22,6 +22,8 @@ public class Robot extends IterativeRobot {
 
 Joystick ljoy = new Joystick(0);
 Joystick rjoy = new Joystick(1);
+double  joyLY = 0;
+double joyRY = 0;
 
 
   @Override
