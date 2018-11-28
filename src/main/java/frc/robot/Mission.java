@@ -11,8 +11,6 @@ ______                    ______       _        ______                          
 */
 
 package frc.robot;
-
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
@@ -22,75 +20,30 @@ import jaci.pathfinder.*;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.VictorSP;
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
-import edu.wpi.first.wpilibj.Solenoid;
-
 import com.kauailabs.navx.frc.AHRS.SerialDataType;
 
-
-
-public class Airsystem 
+public class Mission extends IterativeRobot
 {
-    private Joystick joyl;
-    private Joystick joyr;
-    private Solenoid solonoid;
-    private Compressor compressor;
-    private Timer timer;
 
 
-    public Airsystem()
+    public Mission()
     {
-        //Define the Solonoid and Compressor to round off the Airsystem
-        joyl = new Joystick(0);
-        joyr = new Joystick(1);
-        solonoid = new Solenoid(1);
 
-        //Start the compressor
-        compressor = new Compressor(0);
-        compressor.start();
 
-        //Define the Timer for auto
-        timer = new Timer();
         
 
-        //Announce activation
-        System.out.println("Airsystem Activated!");
-
-    
-    }
-
-    public void activateGrabber()
-    {
-        solonoid.set(true);
-
-    }
-
-    public void deactivateGrabber()
-    {
-        solonoid.set(true);
-
-    }
-    public void autoGrabber()
-    {
-       
-
-    }
-       
-
-
     }
 
 
+
+
+}

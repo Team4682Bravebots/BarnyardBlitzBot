@@ -45,15 +45,19 @@ double JoyLY;
 double JoyRY;
 
 //Initialize the Airsystem
-Airsystem pneumatics = new Airsystem();
+Airsystem pneumatics;
 
 //Define the xbox speeds
 double xboxSpeed;
 
 //Define the Motors
-TalonSRX left = new TalonSRX(0); //Left
-TalonSRX right = new TalonSRX(1); //Right
-VictorSP arm = new VictorSP(4); // Arm motor
+TalonSRX leftT;//Left
+TalonSRX rightT; //Right
+TalonSRX leftB;
+TalonSRX rightB;
+TalonSRX arm; // Arm motor
+
+
 
 //Define the Gyro
 AHRS ahrs = new AHRS(SerialPort.Port.kMXP, SerialDataType.kProcessedData, (byte)50);
@@ -72,8 +76,10 @@ Timer timer = new Timer();
   public void teleopDrive(double lspeed, double rspeed)
   {
     
-    left.set(ControlMode.PercentOutput, lspeed);
-    right.set(ControlMode.PercentOutput, rspeed);
+    leftT.set(ControlMode.PercentOutput, lspeedt);
+    rightT.set(ControlMode.PercentOutput, rspeed);
+    leftB.set(ControlMode.PercentOutput, lspeed);
+    rightB.set(ControlMode.PercentOutput, rspeed);
 
   }
   ///@param desiredDegrees: Setpoint for PID controller
@@ -86,10 +92,12 @@ Timer timer = new Timer();
     {
       if(timer.get() < 1.5){
        pneumatics.activateGrabber();
+       arm.set(ControlMode.PercentOutput, 0.5)
       }
       timer.delay(5);
     }
     timer.stop();
+    pneumatics.deactivateGrabber();
      
   }
 
@@ -97,8 +105,12 @@ Timer timer = new Timer();
 @Override
   public void robotInit() 
   {
-   
-
+  leftT = new TalonSRX(0); 
+  rightT= new TalonSRX(1);
+  leftB = new TalonSRX(3);
+  rightB = new TalonSRX(4);
+  arm = new TalonSRX(2);
+  pneumatics = new Airsystem();
   }
 
 
@@ -127,6 +139,16 @@ Timer timer = new Timer();
     JoyRY = JoyR.getY();
 
     teleopDrive(JoyLY, JoyRY);
+
+    if(JoyL.getTrigger() == true)
+    {
+      pneumatics.activateGrabber();
+
+    }
+    elif(JoyL.getTrigger() == false)
+    {
+      pneumatics.deactivateGrabber();
+    }
 
   }
 
